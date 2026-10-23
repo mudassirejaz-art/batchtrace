@@ -76,7 +76,7 @@ async def main():
         raise SystemExit("STOP: Local BatchTrace database required")
     async with engine.connect() as conn:
         assert await conn.scalar(text("SELECT current_database()")) == "batchtrace_db"
-        assert await conn.scalar(text("SELECT version_num FROM alembic_version")) in {"c5e81d0a624f", "d6f20a718c43"}
+        assert await conn.scalar(text("SELECT version_num FROM alembic_version")) in {"c5e81d0a624f", "d6f20a718c43", "e7b54d260a91"}
     print("PASS: Local database and Step 12 migration guard")
 
     transport = httpx.ASGITransport(app=app)

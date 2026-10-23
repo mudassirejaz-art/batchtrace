@@ -63,7 +63,7 @@ async def main():
     async with engine.connect() as conn:
         assert await conn.scalar(text("SELECT current_database()")) == "batchtrace_db"
         revision = await conn.scalar(text("SELECT version_num FROM alembic_version"))
-        assert revision in {"b4d7f0c9e831", "c5e81d0a624f", "d6f20a718c43"}, ("Run step 11 migration before smoke", revision)
+        assert revision in {"b4d7f0c9e831", "c5e81d0a624f", "d6f20a718c43", "e7b54d260a91"}, ("Run step 11 migration before smoke", revision)
 
     transport = httpx.ASGITransport(app=app)
     async with httpx.AsyncClient(transport=transport, base_url="http://testserver") as client:

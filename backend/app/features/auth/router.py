@@ -1,6 +1,6 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, Request, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
@@ -13,6 +13,7 @@ from app.features.auth.schema import (
     TokenResponse,
     UserResponse,
 )
+from app.features.auth.throttle import enforce_login_throttle
 from app.features.auth.service import (
     InvalidCredentials,
     RegistrationConflict,
@@ -41,7 +42,9 @@ async def register_route(
 async def login_route(
     payload: LoginRequest,
     db: Annotated[AsyncSession, Depends(get_db)],
+    request: Request,
 ):
+    await enforce_login_throttle(request, str(payload.email))
     try:
         token = await login(db, str(payload.email), payload.password)
     except InvalidCredentials:
