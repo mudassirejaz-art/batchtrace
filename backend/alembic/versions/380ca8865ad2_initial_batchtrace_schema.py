@@ -1,7 +1,7 @@
 """initial batchtrace schema
 
 Revision ID: 380ca8865ad2
-Revises: 
+Revises:
 Create Date: 2026-10-23 22:08:29.786674
 
 """
