@@ -1,0 +1,72 @@
+name: batchtrace
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-batchtrace_db}
+      POSTGRES_USER: ${POSTGRES_USER:-batchtrace_app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in deployment/.env}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    networks:
+      - db_net
+    security_opt:
+      - no-new-privileges:true
+
+  backend:
+    build:
+      context: ..
+      dockerfile: deployment/backend.Dockerfile
+    restart: unless-stopped
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-batchtrace_app}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in deployment/.env}@db:5432/${POSTGRES_DB:-batchtrace_db}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in deployment/.env}
+      ACCESS_TOKEN_MINUTES: "30"
+    depends_on:
+      db:
+        condition: service_healthy
+    expose:
+      - "8000"
+    networks:
+      - db_net
+      - app_net
+    security_opt:
+      - no-new-privileges:true
+
+  web:
+    build:
+      context: ..
+      dockerfile: deployment/web.Dockerfile
+    restart: unless-stopped
+    environment:
+      SITE_DOMAIN: ${SITE_DOMAIN:?Set SITE_DOMAIN in deployment/.env}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    depends_on:
+      - backend
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - app_net
+    security_opt:
+      - no-new-privileges:true
+
+networks:
+  db_net:
+    internal: true
+  app_net: {}
+
+volumes:
+  pg_data: {}
+  caddy_data: {}
+  caddy_config: {}
