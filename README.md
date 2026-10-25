@@ -8,6 +8,8 @@ A workspace-based, self-hostable platform for turning historical stock observati
 
 **FastAPI · PostgreSQL · React · TypeScript · Remotion**
 
+[![Frontend CI](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/frontend-ci.yml/badge.svg?branch=main)](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/frontend-ci.yml) [![Backend CI](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/backend-ci.yml/badge.svg?branch=main)](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/backend-ci.yml)
+
 </div>
 
 ---
@@ -58,6 +60,38 @@ Internal outstanding-credit reconciliation
 | Credit reconciliation | Internal expected-credit terms, receipt evidence, reviewer decisions and outstanding balances |
 | Dashboard | Recovery views, approval inbox, claim details, evidence viewer and team workflows |
 | Public landing page | Responsive landing experience with Remotion-powered motion |
+
+## Product screenshots
+
+*Real BatchTrace UI captured from an isolated local demo workspace. Browser controls, Windows taskbar and account identifiers have been cropped or redacted. Screenshots show sample records, not live inventory or verified bank payments.*
+
+### Landing and dashboard
+
+![BatchTrace public landing page](docs/screenshots/01-landing.png)
+
+![BatchTrace owner overview dashboard](docs/screenshots/02-dashboard.png)
+
+### From expiry signals to supplier credit
+
+| Recovery signals | Physical verification |
+| --- | --- |
+| ![Recovery signals and return windows](docs/screenshots/03-recovery-signals.png) | ![Physical check with approved evidence](docs/screenshots/04-physical-checks.png) |
+
+| Supplier claims | Credit reconciliation |
+| --- | --- |
+| ![Supplier claims with accepted quantities](docs/screenshots/05-supplier-claims.png) | ![Internal credit reconciliation with sample recorded balances](docs/screenshots/06-credit-reconciliation.png) |
+
+### Other product screens
+
+| Approval inbox | CSV stock observations |
+| --- | --- |
+| [![Independent approval inbox](docs/screenshots/07-approval-inbox.png)](docs/screenshots/07-approval-inbox.png) | [![CSV import and validation screen](docs/screenshots/08-csv-observations.png)](docs/screenshots/08-csv-observations.png) |
+
+| Batches & expiry | Supplier return policies |
+| --- | --- |
+| [![Batches and expiry](docs/screenshots/09-batches-expiry.png)](docs/screenshots/09-batches-expiry.png) | [![Versioned supplier return policies](docs/screenshots/12-return-policies.png)](docs/screenshots/12-return-policies.png) |
+
+Additional captured views: [Supplier directory](docs/screenshots/10-suppliers.png) · [Product catalog](docs/screenshots/11-products.png) · [Register batch form](docs/screenshots/13-register-batch.png)
 
 ## Application routes
 
