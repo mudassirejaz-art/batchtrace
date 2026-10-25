@@ -29,14 +29,12 @@ function escapeCsv(value:string|number){return '"'+String(value).replaceAll('"',
 export function EvidencePanel({selection,root,token,lots,products,suppliers,policies,viewerId,role,onClose,onReview}:Props){
   const [record,setRecord]=useState<ImportDetail|null>(null);
   const [verification,setVerification]=useState<FullVerification|null>(null);
-  const [loading,setLoading]=useState(false);
+  const [loading,setLoading]=useState(true);
   const [error,setError]=useState('');
   const [acknowledged,setAcknowledged]=useState(false);
   useEffect(()=>{
-    setRecord(null);setVerification(null);setError('');setAcknowledged(false);
     if(!selection||!root||!token)return;
     let active=true;
-    setLoading(true);
     const work=async()=>{
       try{
         const check=selection.kind==='verification'
@@ -52,7 +50,7 @@ export function EvidencePanel({selection,root,token,lots,products,suppliers,poli
     };
     void work();
     return ()=>{active=false;};
-  },[selection?.kind,selection?.id,root,token]);
+  },[selection,root,token]);
 
   const decorated=useMemo(()=>record?.rows.map(row=>{
     const lot=lots.find(x=>x.id===row.lot_id);

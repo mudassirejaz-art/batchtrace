@@ -21,7 +21,16 @@ export function TeamPanel({root,token,myRole,myId}:{root:string;token:string;myR
     catch(e){setError(messageOf(e));}
     finally{setLoading(false);}
   },[root,token]);
-  useEffect(()=>{void load();},[load]);
+  // Initial loading is handled from the async completion; the user-triggered
+  // load() above still shows a spinner during manual refresh and mutations.
+  useEffect(()=>{
+    let active=true;
+    void api<Member[]>(`${root}/team`,token)
+      .then(rows=>{if(active){setMembers(rows);setError('');}})
+      .catch(err=>{if(active)setError(messageOf(err));})
+      .finally(()=>{if(active)setLoading(false);});
+    return ()=>{active=false;};
+  },[root,token]);
   async function add(e:FormEvent){
     e.preventDefault();setBusy(true);setError('');setNotice('');
     try{

@@ -43,15 +43,13 @@ const short=(id?:string)=>id?`${id.slice(0,8)}…`:'—';
 export function ClaimDetailPanel({claimId,root,token,viewerId,role,lots,products,suppliers,onClose,onShowVerification,onApprove}:Props){
   const [claim,setClaim]=useState<FullClaim|null>(null);
   const [verification,setVerification]=useState<FullVerification|null>(null);
-  const [loading,setLoading]=useState(false);
+  const [loading,setLoading]=useState(true);
   const [error,setError]=useState('');
   const [reviewed,setReviewed]=useState(false);
 
   useEffect(()=>{
-    setClaim(null);setVerification(null);setError('');setReviewed(false);
     if(!claimId||!token||!root)return;
     let active=true;
-    setLoading(true);
     const load=async()=>{
       try{
         const detail=await api<FullClaim>(`${root}/recovery/claims/${claimId}`,token);

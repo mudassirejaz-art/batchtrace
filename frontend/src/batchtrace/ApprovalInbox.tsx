@@ -27,7 +27,6 @@ export function ApprovalInbox({root,token,viewerId,claims,verifications,lots,pro
   const [people,setPeople]=useState<Record<string,string>>({});
   useEffect(()=>{
     let active=true;
-    setPeople({});
     // Only owner/admin render this component; the server authorizes the team directory.
     void api<Member[]>(`${root}/team`,token).then(rows=>{
       if(active)setPeople(Object.fromEntries(rows.map(row=>[row.user_id,row.email])));
