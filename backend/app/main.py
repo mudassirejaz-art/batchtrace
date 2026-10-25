@@ -33,3 +33,6 @@ from app.features.claims.router import router as claims_router
 app.include_router(claims_router)
 from app.features.settlements.router import router as settlements_router
 app.include_router(settlements_router)
+
+from app.features.team.router import router as team_router
+app.include_router(team_router)

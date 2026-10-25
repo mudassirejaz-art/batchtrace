@@ -1,0 +1,5 @@
+/* Step 25: small, calm sync indicator for Harvest Studio */
+.live-sync-hint {display:inline-flex;align-items:center;gap:7px;color:#64806d;font-size:11px;white-space:nowrap}
+.live-sync-dot {display:inline-block;width:7px;height:7px;border-radius:50%;background:#55a67c;box-shadow:0 0 0 3px rgba(85,166,124,.13)}
+@media (max-width: 850px){.live-sync-hint{display:none}}
+@media (prefers-reduced-motion:reduce){.live-sync-dot{animation:none}}

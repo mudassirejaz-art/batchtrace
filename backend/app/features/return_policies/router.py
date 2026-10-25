@@ -7,7 +7,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
-from app.features.organizations.dependencies import require_read_membership, require_write_membership
+from app.features.organizations.dependencies import require_read_membership, require_policy_management
 from app.features.organizations.membership_model import OrganizationMembership
 from app.features.return_policies.repository import get_policy, list_policies
 from app.features.return_policies.schema import PolicyCreate, PolicyResponse, ReturnWindowResponse
@@ -25,7 +25,7 @@ evaluation_router = APIRouter(
     tags=["Return policy evaluations"],
 )
 ReadMember = Annotated[OrganizationMembership, Depends(require_read_membership)]
-WriteMember = Annotated[OrganizationMembership, Depends(require_write_membership)]
+WriteMember = Annotated[OrganizationMembership, Depends(require_policy_management)]
 Db = Annotated[AsyncSession, Depends(get_db)]
 
 

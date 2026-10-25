@@ -1,0 +1,28 @@
+.approval-inbox-panel{background:#fffefa;border:1px solid #e1e4d9;border-radius:22px;padding:25px 26px;margin:0 0 25px;box-shadow:0 8px 30px rgba(36,65,48,.035)}
+.approval-inbox-heading{display:flex;gap:14px;align-items:center;margin-bottom:18px}
+.approval-inbox-heading-icon{width:44px;height:44px;border-radius:14px;background:#e8eee5;color:#325f48;display:grid;place-items:center;flex:none}
+.approval-inbox-heading h2{font-size:20px;line-height:1.2;margin:0 0 5px;color:#244333}
+.approval-inbox-heading p{color:#7e9182;font-size:12px;margin:0}
+.approval-inbox-count{margin-left:auto;white-space:nowrap;background:#f9ead2;border:1px solid #eed5b1;color:#91643e;border-radius:100px;padding:7px 11px;font-weight:700;font-size:12px}
+.approval-inbox-empty{display:grid;justify-items:center;gap:8px;color:#486b56;padding:24px 10px;background:#f4f7f1;border-radius:14px}
+.approval-inbox-empty span{font-size:13px;color:#788b7c;text-align:center}
+.approval-inbox-items{display:grid;gap:12px}
+.approval-inbox-item{border:1px solid #e1e5d9;border-radius:15px;padding:17px;background:#fcfcf8}
+.approval-inbox-kind{display:flex;align-items:center;gap:7px;color:#315c46;font-weight:750;font-size:12px;margin-bottom:12px;flex-wrap:wrap}
+.approval-inbox-kind span{font-weight:600;color:#9a6e3c;background:#fff2dd;padding:4px 8px;border-radius:100px;margin-left:auto}
+.approval-inbox-item-body{display:flex;align-items:center;justify-content:space-between;gap:18px}
+.approval-inbox-item-body strong{font-size:16px;color:#234334}
+.approval-inbox-item-body p{margin:5px 0 8px;color:#728778;font-size:12px}
+.approval-inbox-person{display:flex;gap:4px;align-items:center;flex-wrap:wrap;color:#6e8576;font-size:12px}
+.approval-inbox-person b{color:#3e5a46;font-weight:650}
+.approval-inbox-item blockquote{margin:10px 0 0;padding:8px 12px;border-left:3px solid #d2dccc;background:#f3f5ee;border-radius:0 7px 7px 0;color:#415947;font-size:12px;overflow-wrap:anywhere}
+.approval-inbox-review{background:#28533e;color:#fff;border:0;border-radius:10px;padding:12px 14px;display:inline-flex;align-items:center;gap:7px;justify-content:center;flex:none;font-size:12px;font-weight:750;transition:background .15s,transform .15s}
+.approval-inbox-review:hover{background:#1d3d2e;transform:translateY(-1px)}
+.approval-inbox-footnote{font-size:11px;line-height:1.6;color:#829287;margin:15px 0 0}
+.approval-inbox-nav-count{margin-left:auto;border-radius:99px;color:#533a16;background:#f5d9a4;min-width:21px;height:21px;padding:1px 6px;display:inline-grid;place-items:center;font-size:10px;font-weight:850}
+.approval-inbox-bell{position:relative;display:inline-flex;align-items:center;justify-content:center;color:#315a43;background:#edf1e9;border:1px solid #d8e2d5;border-radius:11px;height:36px;min-width:36px;padding:0 9px;cursor:pointer;gap:6px}
+.approval-inbox-bell span{background:#d16d35;color:white;border-radius:999px;min-width:19px;height:19px;padding:0 5px;display:grid;place-items:center;font-size:11px;font-weight:800}
+.approval-inbox-banner{width:100%;margin:0 0 18px;display:flex;align-items:center;gap:10px;background:#eaf2e6;border:1px solid #d0e2d3;color:#27523a;padding:13px 16px;border-radius:12px;text-align:left;font-weight:700;font-size:13px;cursor:pointer}
+.approval-inbox-banner svg:last-child{margin-left:auto}
+@media(max-width:800px){.approval-inbox-panel{padding:18px;margin-bottom:18px}.approval-inbox-heading{flex-wrap:wrap}.approval-inbox-count{margin-left:0}.approval-inbox-item-body{align-items:stretch;flex-direction:column}.approval-inbox-review{width:100%}.approval-inbox-kind span{margin-left:0}}
+@media(prefers-reduced-motion:reduce){.approval-inbox-review{transition:none}.approval-inbox-review:hover{transform:none}}

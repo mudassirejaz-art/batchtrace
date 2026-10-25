@@ -6,7 +6,7 @@ from fastapi import APIRouter, Depends, Header, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.db.session import get_db
-from app.features.organizations.dependencies import require_read_membership, require_write_membership
+from app.features.organizations.dependencies import require_finance_membership
 from app.features.organizations.membership_model import OrganizationMembership
 from app.features.settlements import service
 from app.features.settlements.schema import (
@@ -18,8 +18,8 @@ router = APIRouter(
     prefix="/api/v1/organizations/{organization_id}/recovery/claims/{claim_id}",
     tags=["Credit settlement (internal evidence only)"],
 )
-Reader = Annotated[OrganizationMembership, Depends(require_read_membership)]
-Writer = Annotated[OrganizationMembership, Depends(require_write_membership)]
+Reader = Annotated[OrganizationMembership, Depends(require_finance_membership)]
+Writer = Annotated[OrganizationMembership, Depends(require_finance_membership)]
 Db = Annotated[AsyncSession, Depends(get_db)]
 
 

@@ -1,0 +1,14 @@
+export type Organization = {id:string; name:string; slug:string; role:string};
+export type User = {id:string; email:string; is_active:boolean};
+export type Supplier = {id:string; code:string; name:string; created_at:string};
+export type Product = {id:string; sku:string; name:string; created_at:string};
+export type Lot = {id:string; product_id:string; supplier_id:string; batch_number:string; expiry_date:string; created_at:string};
+export type Policy = {id:string; supplier_id:string; version:number; days_before_expiry:number; days_after_expiry:number; effective_from:string; effective_to:string|null};
+export type ImportRecord = {id:string; filename:string; observed_on:string; row_count:number; created_at:string; content_sha256:string};
+export type CsvPreview = {valid:boolean; observed_on:string; total_rows:number; valid_rows:number; errors:Array<{line:number;code:string;message:string}>; fingerprint:string|null};
+export type Opportunity = {lot_id:string; import_id:string; product_sku:string; supplier_code:string; batch_number:string; expiry_date:string; observed_on:string; observed_quantity:number; snapshot_age_days:number; opportunity_status:string; policy_version:number|null; return_closes_on:string|null; requires_physical_verification:true};
+export type Verification = {id:string; lot_id:string; import_id:string; counted_quantity:number; observed_quantity:number; note:string; status:'pending'|'approved'|'rejected'; submitted_by_user_id:string; created_at:string};
+export type Claim = {id:string; verification_id:string; quantity:number; status:string; note:string; accepted_quantity:number; rejected_quantity:number; submitted_by_user_id:string; created_at:string};
+export type CreditSummary = {claim_id:string;currency:string;accepted_quantity:number;expected_minor:number;approved_recorded_minor:number;pending_review_minor:number;remaining_unrecorded_minor:number;outstanding_unapproved_minor:number;reconciliation_status:string;is_bank_verified:false};
+export type CreditReceipt = {id:string; amount_minor:number; status:string; reference:string; note:string; created_at:string; submitted_by_user_id:string};
+export type Section = 'approvals'|'overview'|'opportunities'|'lots'|'imports'|'suppliers'|'products'|'policies'|'verifications'|'claims'|'credits'|'team';

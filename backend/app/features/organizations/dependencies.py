@@ -38,3 +38,20 @@ async def require_write_membership(
             detail="Insufficient organization permissions",
         )
     return membership
+
+
+async def require_policy_management(
+    membership: Annotated[OrganizationMembership, Depends(require_read_membership)],
+) -> OrganizationMembership:
+    if membership.role not in {"owner", "admin"}:
+        raise HTTPException(status_code=403, detail="Only owners/admins can manage supplier policies")
+    return membership
+
+
+async def require_finance_membership(
+    membership: Annotated[OrganizationMembership, Depends(require_read_membership)],
+) -> OrganizationMembership:
+    # Credit amounts are sensitive. Staff may submit evidence, viewers cannot read it.
+    if membership.role not in {"owner", "admin", "staff"}:
+        raise HTTPException(status_code=403, detail="Financial access is not allowed for this role")
+    return membership

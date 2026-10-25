@@ -1,0 +1,39 @@
+
+/* BATCHTRACE STEP19 — guided first-use workflow; Harvest Studio palette */
+.onboard-panel {margin:22px 0 22px;border:1px solid #dfded0;border-radius:22px;background:#fffefa;box-shadow:0 12px 32px #273d2910;overflow:hidden;color:#234236;}
+.onboard-header {display:flex;justify-content:space-between;gap:22px;padding:24px 28px 17px;align-items:flex-start;}
+.onboard-heading {min-width:0;max-width:670px;}
+.onboard-kicker {display:inline-flex;align-items:center;gap:8px;color:#a16e40;font-size:10px;font-weight:850;letter-spacing:1.5px;}
+.onboard-heading h3 {font-size:25px;letter-spacing:-.7px;margin:9px 0 8px;line-height:1.18;font-weight:800;color:#244438;}
+.onboard-heading p {font-size:13px;color:#6f796f;margin:0;line-height:1.65;}
+.onboard-progress {flex:0 0 115px;text-align:right;display:grid;justify-items:end;gap:5px;}
+.onboard-progress strong {font-size:27px;letter-spacing:-1px;font-weight:850;line-height:1;color:#224237;}
+.onboard-progress strong span {font-size:14px;color:#9eaaa0;font-weight:700;letter-spacing:0;}
+.onboard-progress-track {width:109px;height:6px;background:#e5ebe2;border-radius:99px;overflow:hidden;}
+.onboard-progress-track > div {height:100%;background:#6ea08a;border-radius:99px;transition:width .45s ease;}
+.onboard-progress small {font-size:10px;color:#738276;}
+.onboard-steps {padding:0 21px 21px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;}
+.onboard-step {min-width:0;text-align:left;padding:14px 11px 12px;border:1px solid #e5e6db;background:#fafaf6;border-radius:13px;display:flex;align-items:flex-start;gap:9px;cursor:pointer;color:#324c40;transition:transform .2s ease,background .2s ease,border-color .2s ease,box-shadow .2s ease;}
+.onboard-step:hover {background:#f0f6ed;transform:translateY(-3px);box-shadow:0 9px 17px #243d3410;}
+.onboard-step:focus-visible,.onboard-footer button:focus-visible {outline:3px solid #80b69a;outline-offset:2px;}
+.onboard-step.is-next {background:#f0f6ee;border-color:#a3c8a9;}
+.onboard-step.is-complete {opacity:.78;}
+.onboard-step-number {display:grid;place-items:center;flex:none;width:27px;height:27px;border-radius:9px;background:#e8eee6;color:#315944;font-size:10px;font-weight:800;}
+.onboard-step.is-complete .onboard-step-number {background:#d9ebdb;color:#25704e;}
+.onboard-step-content {min-width:0;flex:1;display:flex;flex-direction:column;gap:6px;}
+.onboard-step-content strong {font-size:12px;line-height:1.32;font-weight:800;}
+.onboard-step-content small {font-size:10px;line-height:1.5;color:#788378;}
+.onboard-step-arrow {flex:0 0 13px;width:13px;color:#6e9079;margin-top:6px;}
+.onboard-footer {background:#f3f6ed;border-top:1px solid #e2e9dd;padding:15px 23px;display:flex;align-items:center;justify-content:space-between;gap:18px;}
+.onboard-footer > div:first-child {display:flex;align-items:center;gap:9px;color:#68786a;font-size:11px;line-height:1.5;min-width:0;}
+.onboard-footer > div:first-child svg {flex:none;color:#729779;}
+.onboard-footer-actions {display:flex;align-items:center;gap:8px;flex:none;}
+.onboard-footer button {border-radius:9px;min-height:35px;padding:8px 12px;display:flex;align-items:center;justify-content:center;gap:7px;font-size:11px;font-weight:800;cursor:pointer;transition:background .2s ease,transform .2s ease;}
+.onboard-footer button:hover {transform:translateY(-1px);}
+.onboard-download {border:1px solid #d3ded0;background:white;color:#345849;}
+.onboard-primary {border:1px solid #254936;background:#254936;color:#ffffff;}
+.onboard-primary:hover {background:#346449;}
+@media (max-width:1250px) {.onboard-steps {grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media (max-width:780px) {.onboard-header{padding:21px 19px 15px}.onboard-steps{grid-template-columns:repeat(2,minmax(0,1fr));padding:0 15px 15px}.onboard-footer{flex-wrap:wrap;padding:14px 18px}.onboard-footer-actions{width:100%;justify-content:flex-end}}
+@media (max-width:480px) {.onboard-header{gap:12px}.onboard-heading h3{font-size:21px}.onboard-progress{flex-basis:75px}.onboard-progress-track{width:75px}.onboard-steps{grid-template-columns:1fr}.onboard-step{align-items:center;min-height:55px}.onboard-step-arrow{margin-top:0}}
+@media (prefers-reduced-motion: reduce) {.onboard-panel *, .onboard-panel *::before, .onboard-panel *::after {animation:none !important;transition:none !important;}}

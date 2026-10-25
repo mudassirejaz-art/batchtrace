@@ -110,7 +110,8 @@ async def main():
         assert retry["id"] == rejected["id"]
         await expect(client, "POST", receipts_url, 409, headers=h1,
                      json={**first_payload, "amount_minor": 25000})
-        pending_summary = (await expect(client, "GET", summary_url, 200, headers=viewer_auth)).json()
+        await expect(client, "GET", summary_url, 403, headers=viewer_auth)
+        pending_summary = (await expect(client, "GET", summary_url, 200, headers=creator_auth)).json()
         assert pending_summary["pending_review_minor"] == 30000
         assert pending_summary["approved_recorded_minor"] == 0
         await expect(client, "POST", receipts_url, 403,
@@ -166,7 +167,8 @@ async def main():
         assert summary["reconciliation_status"] == "fully_reconciled_internal"
         await expect(client, "POST", receipts_url, 409,
                      headers={**creator_auth, "Idempotency-Key": "exceed-" + token}, json=first_payload)
-        listed = (await expect(client, "GET", receipts_url, 200, headers=viewer_auth)).json()
+        await expect(client, "GET", receipts_url, 403, headers=viewer_auth)
+        listed = (await expect(client, "GET", receipts_url, 200, headers=creator_auth)).json()
         assert len(listed) == 3  # one race loser is never inserted
         assert sum(r["amount_minor"] for r in listed if r["status"] == "approved") == 86415
         await expect(client, "GET", receipts_url, 422, headers=creator_auth, params={"limit": 0})

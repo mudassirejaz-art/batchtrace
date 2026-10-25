@@ -1,0 +1,7 @@
+.workspace-reload {display:flex;align-items:center;gap:5px;margin:3px 14px 11px;padding:7px 10px;color:#e8e9d6;background:transparent;border:1px solid rgba(240,242,215,.21);border-radius:9px;font:inherit;font-size:11px;cursor:pointer}
+.workspace-reload:hover{background:rgba(255,255,255,.09)}
+.workspace-role-note{display:flex;gap:8px;align-items:center;padding:9px 12px;margin-bottom:14px;border-radius:10px;background:#edf4e9;color:#335543;font-size:12px;border:1px solid #d8e5d5}
+.auth-workspace-note{padding:11px 13px;background:#f4f0e5;border:1px solid #e5decb;border-radius:10px;color:#526758;font-size:12px;line-height:1.55;margin-bottom:12px}
+.auth-workspace-toggle{appearance:none;border:0;background:transparent;padding:5px 0 12px;color:#315742;text-align:left;font:inherit;font-weight:650;font-size:12px;text-decoration:underline;cursor:pointer}
+.role-readonly{font-size:12px;color:#667c6a;padding:7px 10px;background:#eef2e9;border-radius:9px}
+@media (prefers-reduced-motion:reduce){.workspace-reload,.auth-workspace-toggle{transition:none!important}}
