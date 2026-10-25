@@ -26,6 +26,27 @@ It is built around **traceability and independent review**. Parsed CSV rows are 
 
 > **Scope:** BatchTrace is an internal operational and reconciliation tool. It does not contact suppliers, verify bank payments, or automatically recover money. A recorded credit is not proof that funds have been received.
 
+## What BatchTrace helps you manage
+
+BatchTrace is a **free, open-source inventory expiry tracking
+system** for teams managing product batches, supplier return
+windows, and historical inventory evidence.
+
+The application supports **batch and lot tracking**,
+**expiry date monitoring**, **CSV stock snapshot imports**,
+and **supplier return policy management**. These workflows
+help teams identify potentially recoverable stock and
+maintain a traceable inventory audit trail.
+
+BatchTrace also supports **physical stock verification**,
+**independent approvals**, **supplier return claims**,
+and **internal supplier credit reconciliation**.
+
+Built with **FastAPI, React, TypeScript, and PostgreSQL**,
+BatchTrace is a self-hosted inventory recovery application.
+It does not automatically contact suppliers, verify bank
+payments, or maintain authoritative live stock balances.
+
 ## How it works
 
 ```text
