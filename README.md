@@ -8,6 +8,10 @@ A workspace-based, self-hostable platform for turning historical stock observati
 
 **FastAPI · PostgreSQL · React · TypeScript · Remotion**
 
+**Free to self-host. No domain or paid account needed for a local install.**
+
+[Start here: free installation & user guide](docs/USER_GUIDE.md) · [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [MIT License](LICENSE)
+
 [![Frontend CI](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/frontend-ci.yml/badge.svg?branch=main)](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/frontend-ci.yml) [![Backend CI](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/backend-ci.yml/badge.svg?branch=main)](https://github.com/mudassirejaz-art/batchtrace/actions/workflows/backend-ci.yml)
 
 </div>
@@ -18,7 +22,7 @@ A workspace-based, self-hostable platform for turning historical stock observati
 
 BatchTrace helps teams identify batches approaching expiry, review the supporting evidence, coordinate supplier return claims, and keep a clear internal record of expected versus recorded credit.
 
-It is built around **traceability and independent review**. Imported stock files are preserved as historical observations; supplier policies are versioned; decisions and claim events leave an audit trail.
+It is built around **traceability and independent review**. Parsed CSV rows are saved as historical observations (the original uploaded CSV is not archived); supplier policies are versioned; decisions and claim events leave an audit trail.
 
 > **Scope:** BatchTrace is an internal operational and reconciliation tool. It does not contact suppliers, verify bank payments, or automatically recover money. A recorded credit is not proof that funds have been received.
 
@@ -224,7 +228,9 @@ See [`deployment/README.md`](deployment/README.md) for prerequisite and approval
 
 ## License and contributions
 
-This repository is currently private. No open-source license is granted by this README; licensing and external contribution policies will be decided separately.
+**Open source — MIT License.** You may use, modify, and redistribute the code, including commercially, subject to [LICENSE](LICENSE). See [USER GUIDE](docs/USER_GUIDE.md) for free local setup and operational workflow, [CONTRIBUTING](CONTRIBUTING.md) for contributions, and [SECURITY](SECURITY.md) for security reporting. Third-party dependencies/assets are governed by their own licenses.
+
+**No hosted service is provided:** users must run BatchTrace on their own computer or server. The current source is a development release candidate, not a security-certified or production-operated service.
 
 ---
 
