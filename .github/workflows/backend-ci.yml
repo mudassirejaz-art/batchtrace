@@ -1,0 +1,101 @@
+name: BatchTrace Backend CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  backend:
+    name: PostgreSQL integration smoke tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: batchtrace_db
+          POSTGRES_USER: batchtrace_dev
+          POSTGRES_PASSWORD: ci_only_test_password_2026
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U batchtrace_dev -d batchtrace_db"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+
+    defaults:
+      run:
+        working-directory: backend
+
+    env:
+      GITHUB_CI_DB: "true"
+      APP_ENV: development
+      DATABASE_URL: postgresql+asyncpg://batchtrace_dev:ci_only_test_password_2026@127.0.0.1:5432/batchtrace_db
+      JWT_SECRET: ci_only_disposable_test_secret_never_use_in_production_2026
+      ACCESS_TOKEN_MINUTES: "30"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Setup Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+          cache: pip
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install backend dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+
+      - name: Verify disposable CI database
+        run: |
+          python - <<'PY'
+          import os
+          from app.db.session import engine
+
+          u = engine.url
+          assert os.environ.get("GITHUB_ACTIONS") == "true"
+          assert os.environ.get("GITHUB_CI_DB") == "true"
+          assert u.host == "127.0.0.1"
+          assert u.database == "batchtrace_db"
+          assert u.username == "batchtrace_dev"
+
+          print("PASS: Isolated CI database target")
+          PY
+
+      - name: Initialize temporary database schema
+        run: |
+          alembic upgrade head
+          alembic current
+
+      - name: Run all 12 backend smoke scripts
+        run: |
+          set -euo pipefail
+          passed=0
+
+          for name in \
+            auth catalog lots return_policies \
+            imports recovery verifications claims \
+            settlements login_throttle roles team
+          do
+            echo "::group::Smoke test: $name"
+
+            PYTHONPATH="$PWD:$PWD/tests" \
+              python "tests/smoke_${name}.py"
+
+            passed=$((passed + 1))
+            echo "::endgroup::"
+          done
+
+          test "$passed" -eq 12
+          echo "BACKEND CI PASS: 12 / 12 smoke scripts"
